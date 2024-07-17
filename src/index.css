@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
 :root{
     --beige:#ece3dc;
     --dark-purple:#b687b4;
@@ -6,4 +10,6 @@
     --medium-purple: #b4a4bc;
     --black: #090909;
     --white: #FEFEFE;
+    --font-montserrat: "Montserrat", sans-serif;
+    --font-alexandria: "Alexandria", sans-serif;
 }
