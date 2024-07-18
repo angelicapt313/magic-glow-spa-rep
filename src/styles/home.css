@@ -1,0 +1,17 @@
+body{
+    background-color: var(--beige);
+}
+
+.container{
+    height: 100vh;
+}
+
+.card{
+    width: 350px; 
+    height: 400px;
+}
+
+
+.video-magic{
+    width: 300px;
+}
