@@ -4,14 +4,21 @@ import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
 // Importa el JS de Bootstrap
 import '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
 import Header from './components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home.jsx'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header />
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+          </Routes>
+        </header>
+      </div>
+    </Router>
   );
 }
 
