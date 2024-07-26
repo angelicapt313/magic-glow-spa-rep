@@ -1,0 +1,12 @@
+body{
+    font-family: var(--font-montserrat);
+}
+
+.services{
+    color: var(--black);
+}
+
+.card-services:hover{
+    background-color: var(--dark-purple);
+    color:var(--white);
+}
