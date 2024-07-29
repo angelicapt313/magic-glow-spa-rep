@@ -5,7 +5,8 @@ import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
 import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home.jsx'
+import Home from './pages/Home.jsx';
+import Services from './pages/Services.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Header />
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/services' element={<Services />} />
           </Routes>
         </header>
       </div>
