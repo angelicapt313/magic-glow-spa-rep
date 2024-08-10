@@ -1,7 +1,8 @@
 import React from 'react';
 import cosmetico from '../assets/images/cosmetico.png'
 import { Link } from 'react-router-dom';
-import '../styles/header.css'
+import '../styles/header.css';
+import imgCart from '../assets/images/imgCart.svg';
 
 const Header = () => {
     return (
@@ -24,6 +25,11 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
+            <div className="flex">
+                <Link to="/">
+                <img src={imgCart}/>
+                </Link>
+            </div>
             </div>
         </nav>
     )
