@@ -7,6 +7,7 @@ import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
+import Reservation from './pages/Reservation.jsx'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/services' element={<Services />} />
+            <Route path='/reservation' element={<Reservation />}/>
           </Routes>
         </header>
       </div>
