@@ -26,7 +26,7 @@ const Header = () => {
                     </ul>
                 </div>
             <div className="flex">
-                <Link to="/">
+                <Link to="/cart">
                 <img src={imgCart}/>
                 </Link>
             </div>
