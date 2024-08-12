@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "name": "Manicure",
+      "price": 10,
+      "image": "/images/manicure.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Pedicure",
+      "price": 20,
+      "image": "/images/pedicure.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Make Up",
+      "price": 30,
+      "image": "/images/makeUp.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Hairstyle",
+      "price": 40,
+      "image": "/images/hairStyle.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Hair Cutting",
+      "price": 50,
+      "image": "/images/hairCutting.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Eyebrow Design",
+      "price": 60,
+      "image": "/images/eyebrow.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Depilation",
+      "price": 70,
+      "image": "/images/depilation.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Skin Cleaning",
+      "price": 80,
+      "image": "/images/cleaning.jpg"
+    }
+  ]
+  
