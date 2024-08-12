@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../styles/servicesCard.css';
 
 const ServicesCard = ({ service }) => {
     
@@ -6,11 +7,11 @@ const ServicesCard = ({ service }) => {
  
 
     return (
-        <div className="card" style={{ width: 400 }}>
+        <div className=" card-css p-1 m-2 text-center" >
             <div className="card-body">
-                <img src={(`../${service.image}`)} className="w-50" alt={service.name}/>
-                <p>{service.name}</p>
-                <p>${service.price}</p>
+                <img src={(`../${service.image}`)} className="w-75" alt={service.name}/>
+                <p className="card-title fw-bolder">{service.name}</p>
+                <p className="card-price fw-bold">${service.price}</p>
             </div>
         </div>
 
