@@ -1,26 +1,20 @@
-import React, {useEffect, useState} from "react";
-import manicure from '../assets/images/manicure.png';
-import pedicure from '../assets/images/pedicure.png';
-import makeUp from '../assets/images/makeUp.png';
-import hairStyle from '../assets/images/hairStyle.png';
-import hairCutting from '../assets/images/hairCutting.png';
-import eyebrow from '../assets/images/eyebrow.png';
-import depilation from '../assets/images/depilation.png';
-import cleaning from '../assets/images/cleaning.png';
+import React, { useEffect, useState } from "react";
 import '../styles/services.css'
+import ServicesCard from "../components/ServicesCard";
 
 
 
 const Services = () => {
     const [servicesList, setServicesList] = useState([]);
-
-    useEffect( () => {
+    
+    useEffect(() => {
         const fetchServices = async () => {
-            try{
+            try {
                 const response = await fetch('/services.json');
                 const data = await response.json();
                 setServicesList(data);
-            } catch(error) {
+               
+            } catch (error) {
                 console.log('Error fetching the services data: ', error);
             }
         };
@@ -31,13 +25,16 @@ const Services = () => {
 
     return (
         <div>
-         <h3 className="text-center m-4 services">Delight in our services.</h3>
-         <ul>
-            {servicesList.map(item => (
-             <li key={item.id}>{item.name}</li>             
-            ))
-            }
-         </ul>
+            <h3 className="text-center m-4 services">Delight in our services.</h3>
+
+            <div className="grid ">
+                {servicesList.map(service => (
+                    <ServicesCard key={service.id} service={service} />
+                ))
+
+                }
+            </div>
+
         </div>
 
     )
