@@ -1,6 +1,6 @@
 .card-css {
   width: 250px;
-  height: 254px;
+  height: 260px;
   border-radius: 30px;
   background: transparent;
   box-shadow: 15px 15px 30px  rgba(255, 255, 255, 0.1),
@@ -9,19 +9,30 @@
              border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
+.btn-add{
+  background-color: #e0e0e0a3;
+  border-radius: 10px;
+  box-shadow: inset 4px 4px 10px #bcbcbc, inset -4px -4px 10px #ffffff;
+  color: var(--dark-purple);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 2px 9px;
+  border: 2px solid rgb(206, 206, 206);
+}
+
 .card-title{
   color: black;
 }
 
 .card-price{
   color: #778899;
+  font-size: 16px;
 }
 
 
 .card-css:hover{
   background-color: var(--dark-purple);
   transform: translateY(-5px);
-  cursor: pointer;
 }
 
 .card-css:hover .card-title{
@@ -31,6 +42,13 @@
 
 .card-css:hover .card-price{
   color:#2F4F4F ;
+}
+
+.card-css:hover .btn-add{
+  background-color: transparent;
+  color: white;
+  border: none;
+
 }
 
 
