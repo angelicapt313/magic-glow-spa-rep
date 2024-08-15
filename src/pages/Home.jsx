@@ -25,8 +25,8 @@ const Home = () => {
 
                         <Link to="/services" >
                             <button className="text-center rounded-4">
-                                <span class="shadow"></span>
-                                <span class="edge"></span>
+                                <span className="shadow"></span>
+                                <span className="edge"></span>
                                 <span className="calendar front text">
                                     <img src={Calendar} width={30} className="p-1" /> Reserva
                                 </span>
