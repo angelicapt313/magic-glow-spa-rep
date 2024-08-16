@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../styles/servicesCard.css';
 
-const ServicesCard = ({ service }) => {
+const ServicesCard = ({ service, openModal }) => {
 
     const [quantity, setQuantity] = useState(0);
 
@@ -14,7 +14,7 @@ const ServicesCard = ({ service }) => {
 
                 <div className="button d-flex justify-content-end align-items-end">
                     <p className="card-price fw-bolder mx-2 mb-0">${service.price}</p>
-                    <button className="btn btn-add text-center">+</button>
+                    <button onClick={openModal} className="btn btn-add text-center">+</button>
                 </div>
             </div>
 
