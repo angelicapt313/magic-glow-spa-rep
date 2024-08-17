@@ -10,10 +10,25 @@ import Services from './pages/Services';
 import Reservation from './pages/Reservation';
 import Cart from './components/Cart';
 import { useState } from 'react';
+import InfoModal from './components/InfoMondal';
 
 function App() {
 
   const [showCart, setShowCart] = useState(false); // Estado para controlar la visibilidad del Cart
+
+  const [selectedService, setSelectedService] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = (service) => {
+    setSelectedService(service);
+    setShowModal(true);
+  }
+
+  const closeModal = () => {
+    setSelectedService(null);
+    setShowModal(false);
+  }
+
 
   const toggleCart = () => setShowCart(!showCart);
 
@@ -23,13 +38,21 @@ function App() {
       <div className="App">
         <Header toggleCart={toggleCart} showCart={showCart} />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/services' element={<Services />} />
-          <Route path='/reservation' element={<Reservation />} />
+          <Route path='/' 
+          element={<Home />} />
+          <Route path='/services' 
+          element={<Services openModal={openModal} />} />
+          <Route path='/reservation' 
+          element={<Reservation />} />
         </Routes>
 
-        {showCart && <Cart toggleCart={toggleCart} />}
+        {showCart && 
+        <Cart toggleCart={toggleCart} 
+        />}
 
+        {showModal && 
+        <InfoModal service={selectedService} closeModal={closeModal} 
+        />}
       </div>
     </Router>
   );

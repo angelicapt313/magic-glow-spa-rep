@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import '../styles/services.css'
 import ServicesCard from "../components/ServicesCard";
-import InfoModal from "../components/InfoMondal";
 
-
-
-const Services = () => {
+const Services = ({ openModal }) => {
     const [servicesList, setServicesList] = useState([]);
 
   
@@ -31,11 +28,12 @@ const Services = () => {
             <h3 className="text-center m-4 services">Delight in our services.</h3>
 
             <div className="row justify-content-center">
-                {servicesList.map(service => (
+                {servicesList.map((service) => (
                     <ServicesCard
                         key={service.id}
                         service={service}
                         className="col col-md-4"
+                        openModal={() => openModal(service)}
                         />
                 ))
                 }
