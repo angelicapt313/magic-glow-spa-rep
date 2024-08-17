@@ -1,4 +1,5 @@
 import React from "react";
+import Form from "./Form";
 
 function InfoModal({ service, closeModal }) {
 
@@ -16,7 +17,7 @@ function InfoModal({ service, closeModal }) {
             <button type="button" className="btn-close" onClick={closeModal}></button>
           </div>
           <div className="modal-body">
-            {/* COMPONENTE FORM */}
+            <Form />
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" onClick={closeModal}>
