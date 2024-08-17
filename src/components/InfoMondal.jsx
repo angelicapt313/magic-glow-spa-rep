@@ -3,9 +3,7 @@ import Form from "./Form";
 
 function InfoModal({ service, closeModal }) {
 
-  if (!service) {
-    return null;
-  }
+  if (!service) return null;
 
 
   return (
@@ -17,7 +15,7 @@ function InfoModal({ service, closeModal }) {
             <button type="button" className="btn-close" onClick={closeModal}></button>
           </div>
           <div className="modal-body">
-            <Form />
+            <Form selectedService={service} />
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" onClick={closeModal}>

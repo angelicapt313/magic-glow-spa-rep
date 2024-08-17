@@ -6,7 +6,7 @@ const Form = ({ selectedService }) => {
         fullName: '',
         email: '',
         phone: '',
-        service: selectedService,
+        service: selectedService.name,
         comments: ''
     });
 
