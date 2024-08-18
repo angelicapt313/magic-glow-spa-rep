@@ -25,61 +25,68 @@ const Form = ({ selectedService }) => {
 
     return (
         <>
-            <div className="container mt-1">
+            <div className="container h-100 mt-1">
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="fullName" className="form-label">Nombre Completo <span className="form-text">(Opcional)</span></label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="fullName"
-                            name="fullName"
-                            value={formData.fullName}
-                            onChange={handleChange}
-                            placeholder="Escribe tu nombre completo"
-                            required
-                        />
+
+                    <div className="gap-3 input-group">
+                        <div className="mb-3 col-5">
+                            <label htmlFor="fullName" className="form-label">Nombre</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="fullName"
+                                name="fullName"
+                                value={formData.fullName}
+                                onChange={handleChange}
+                                placeholder="Escribe tu nombre completo"
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-3 col-6">
+                            <label htmlFor="email" className="form-label">Correo Electrónico</label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="tucorreo@ejemplo.com"
+                                required
+                            />
+                        </div>
                     </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Correo Electrónico</label>
-                        <input
-                            type="email"
-                            className="form-control"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="tucorreo@ejemplo.com"
-                            required
-                        />
+                    <div className=" gap-3 input-group">
+                        <div className="mb-3 col-5">
+                            <label htmlFor="phone" className="form-label">Número de Teléfono</label>
+                            <input
+                                type="tel"
+                                className="form-control"
+                                id="phone"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                placeholder="(123) 456-7890"
+                                required
+                                maxLength={10}
+                            />
+                        </div>
+
+                        <div className="mb-3 col-5">
+                            <label htmlFor="service" className="form-label">Servicio Solicitado</label>
+                            <input
+                                type="text"
+                                className="form-control fw-medium"
+                                id="service"
+                                name="service"
+                                value={formData.service}
+                                readOnly
+                            />
+                        </div>
                     </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="phone" className="form-label">Número de Teléfono</label>
-                        <input
-                            type="tel"
-                            className="form-control"
-                            id="phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            placeholder="(123) 456-7890"
-                            required
-                        />
-                    </div>
-
-                    <div className="mb-3">
-                        <label htmlFor="service" className="form-label">Servicio Solicitado</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="service"
-                            name="service"
-                            value={formData.service}
-                            readOnly
-                        />
-                    </div>
 
                     <div className="mb-3">
                         <label htmlFor="comments" className="form-label">Comentarios o Solicitudes Especiales</label>
