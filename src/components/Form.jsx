@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CalendarComponent from './CalendarComponent';
 
 const Form = ({ selectedService }) => {
 
@@ -100,6 +101,8 @@ const Form = ({ selectedService }) => {
                             placeholder="Escribe aquí cualquier solicitud o comentario especial"
                         ></textarea>
                     </div>
+
+                    <CalendarComponent />
 
                     <button type="submit" className="btn btn-primary">Enviar Reservación</button>
                 </form>
