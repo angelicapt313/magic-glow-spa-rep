@@ -15,6 +15,14 @@ const CalendarComponent = () => {
 
   const toggleCalendar = () => setShowCalendar(!showCalendar);
 
+  const formatDateInSpanish = (date) => {
+    return date.toLocaleDateString('es-MX', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
 
   return (
     <div className="wrapper">
@@ -32,7 +40,7 @@ const CalendarComponent = () => {
               value={selectedDate} />
           </div>
         )}
-        <p className="my-3">Fecha seleccionada:<span className="fw-bold m-1">{selectedDate.toDateString()}</span> </p>
+        <p className="my-3">Fecha seleccionada:<span className="fw-bold m-1">{formatDateInSpanish(selectedDate)}</span> </p>
       </div>
     </div>
 
