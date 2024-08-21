@@ -1,30 +1,43 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css'; // Importa el estilo por defecto
+import 'react-calendar/dist/Calendar.css';
 
 const CalendarComponent = () => {
 
-    const [date, setDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  const handleDateChange = (newDate) => {
+    setSelectedDate(newDate);
+    setShowCalendar(false);
+  }
+
+  const toggleCalendar = () => setShowCalendar(!showCalendar);
 
 
-    const handleDateChange = (newDate) => {
-        setDate(date);
-    }
+  return (
+    <div className="wrapper">
+      <button
+        onClick={toggleCalendar}
+        className="btn" style={{backgroundColor:'#b4a4bc'}}>
+        <p className="m-0">Seleccionar fecha:</p>
+      </button>
+      <div className="calendar-container">
+
+        {showCalendar && (
+          <div className="calendar-container">
+            <Calendar
+              onChange={handleDateChange}
+              value={selectedDate} />
+          </div>
+        )}
+        <p className="my-3">Fecha seleccionada:<span className="fw-bold m-1">{selectedDate.toDateString()}</span> </p>
+      </div>
+    </div>
 
 
-    return(
-       
-            <div className="calendar-container">
-              <h3 className="">Selecciona una fecha:</h3>
-               <Calendar
-                onChange={handleDateChange}
-                value={date}
-                className="my-calendar"
-              /> 
-              <p>Fecha seleccionada: {date.toDateString()}</p>
-            </div>
-        
-    );
+  );
 
 
 }
