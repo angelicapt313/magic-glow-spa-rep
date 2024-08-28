@@ -1,60 +1,42 @@
 import React, { useState } from "react";
 import CalendarComponent from './CalendarComponent';
+import { Controller } from "react-hook-form";
 
-const Form = ({ selectedService }) => {
-
-    const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
-        phone: '',
-        service: selectedService.name,
-        comments: ''
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: value
-        }))
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
-
+const Form = ({ control, selectedService }) => {
 
     return (
         <>
             <div className="container h-100 mt-1">
-                <form onSubmit={handleSubmit}>
+                <form>
 
                     <div className="gap-3 input-group">
                         <div className="mb-3 col-5">
                             <label htmlFor="fullName" className="form-label">Nombre</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="fullName"
+                            <Controller
                                 name="fullName"
-                                value={formData.fullName}
-                                onChange={handleChange}
-                                placeholder="Escribe tu nombre completo"
-                                required
+                                control={control}
+                                render={({ field }) =>
+                                    <input type="text"
+                                        className="form-control"
+                                        id="fullName"
+                                        placeholder="Escribe tu nombre completo"
+                                        required {...field}
+                                    />}
+
                             />
                         </div>
 
                         <div className="mb-3 col-6">
                             <label htmlFor="email" className="form-label">Correo Electrónico</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                id="email"
+                            <Controller
                                 name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="tucorreo@ejemplo.com"
-                                required
+                                control={control}
+                                render={({ field }) => <input type="email"
+                                    className="form-control"
+                                    id="email"
+                                    placeholder="tucorreo@ejemplo.com"
+                                    required />}
+
                             />
                         </div>
                     </div>
@@ -62,28 +44,31 @@ const Form = ({ selectedService }) => {
                     <div className=" gap-3 input-group">
                         <div className="mb-3 col-5">
                             <label htmlFor="phone" className="form-label">Número de Teléfono</label>
-                            <input
-                                type="tel"
-                                className="form-control"
-                                id="phone"
+                            <Controller
                                 name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                placeholder="(123) 456-7890"
-                                required
-                                maxLength={10}
+                                control={control}
+                                render={({ field }) => <input type="number"
+
+                                    className="form-control"
+                                    id="phone"
+                                    placeholder="(123) 456-7890"
+                                    required
+                                />}
+
                             />
                         </div>
 
                         <div className="mb-3 col-5">
                             <label htmlFor="service" className="form-label">Servicio Solicitado</label>
-                            <input
-                                type="text"
-                                className="form-control fw-medium"
-                                id="service"
+                            <Controller
                                 name="service"
-                                value={formData.service}
-                                readOnly
+                                control={control}
+                                render={({ field }) => <input type="text"
+                                    className="form-control fw-medium"
+                                    id="service"
+                                    defaultValue={selectedService.name}
+                                    readOnly />}
+
                             />
                         </div>
                     </div>
@@ -91,20 +76,19 @@ const Form = ({ selectedService }) => {
 
                     <div className="mb-3">
                         <label htmlFor="comments" className="form-label">Comentarios o Solicitudes Especiales</label>
-                        <textarea
-                            className="form-control"
-                            id="comments"
+                        <Controller
                             name="comments"
-                            rows="3"
-                            value={formData.comments}
-                            onChange={handleChange}
-                            placeholder="Escribe aquí cualquier solicitud o comentario especial"
-                        ></textarea>
+                            control={control}
+                            render={({ render }) => <textarea className="form-control"
+                                id="comments"
+                                rows="3"
+                                placeholder="Escribe aquí cualquier solicitud o comentario especial">
+                            </textarea>}
+
+                        />
                     </div>
 
                     <CalendarComponent />
-
-                    <button type="submit" className="btn btn-primary">Enviar Reservación</button>
                 </form>
             </div>
         </>
