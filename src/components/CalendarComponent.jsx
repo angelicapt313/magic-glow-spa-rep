@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import '../styles/Calendar.css'
+import 'react-calendar/dist/Calendar.css'
 
 const CalendarComponent = () => {
 
@@ -31,12 +31,13 @@ const CalendarComponent = () => {
         className="btn" style={{backgroundColor:'#b4a4bc'}}>
         <p className="m-0">Seleccionar fecha:</p>
       </button>
-      <div className="calendar-container mt-1">
+      <div className="mt-1">
 
         {showCalendar && (
             <Calendar
               onChange={handleDateChange}
-              value={selectedDate} />
+              value={selectedDate}
+              />
         )}
         <p className="my-3">Fecha seleccionada:<span className="fw-bold m-1">{formatDateInSpanish(selectedDate)}</span> </p>
       </div>
