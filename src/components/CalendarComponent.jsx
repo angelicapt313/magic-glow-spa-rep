@@ -26,18 +26,21 @@ const CalendarComponent = () => {
 
   return (
     <div className="wrapper ">
+
       <button
         onClick={toggleCalendar}
-        className="btn" style={{backgroundColor:'#b4a4bc'}}>
+        className="btn" style={{ backgroundColor: '#b4a4bc' }}>
         <p className="m-0">Seleccionar fecha:</p>
       </button>
+
       <div className="mt-1">
 
         {showCalendar && (
-            <Calendar
-              onChange={handleDateChange}
-              value={selectedDate}
-              />
+          <Calendar
+            onChange={handleDateChange}
+            value={selectedDate}
+            className="w-100 mx-auto bg-transparent border-1"
+          />
         )}
         <p className="my-3">Fecha seleccionada:<span className="fw-bold m-1">{formatDateInSpanish(selectedDate)}</span> </p>
       </div>
