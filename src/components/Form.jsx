@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import CalendarComponent from './CalendarComponent';
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 const Form = ({ control, selectedService }) => {
+    const [serviceName, setServiceName] = useState(selectedService.name);
+    const [comments, setComments] = useState('');
+
+    const handleServiceChange = (e) => {
+        setServiceName(e.target.value);
+        setComments(e.target.value);
+    }
 
     return (
         <>
             <div className="container h-100 mt-1">
                 <form>
-
                     <div className="gap-3 input-group">
                         <div className="mb-3 col-5">
                             <label htmlFor="fullName" className="form-label">Nombre</label>
@@ -31,11 +37,12 @@ const Form = ({ control, selectedService }) => {
                             <Controller
                                 name="email"
                                 control={control}
-                                render={({ field }) => <input type="email"
-                                    className="form-control"
-                                    id="email"
-                                    placeholder="tucorreo@ejemplo.com"
-                                    required />}
+                                render={({ field }) =>
+                                    <input type="email"
+                                        className="form-control"
+                                        id="email"
+                                        placeholder="tucorreo@ejemplo.com"
+                                        required {...field} />}
 
                             />
                         </div>
@@ -47,13 +54,13 @@ const Form = ({ control, selectedService }) => {
                             <Controller
                                 name="phone"
                                 control={control}
-                                render={({ field }) => <input type="number"
-
-                                    className="form-control"
-                                    id="phone"
-                                    placeholder="(123) 456-7890"
-                                    required
-                                />}
+                                render={({ field }) =>
+                                    <input type="number"
+                                        className="form-control"
+                                        id="phone"
+                                        placeholder="(123) 456-7890"
+                                        required {...field}
+                                    />}
 
                             />
                         </div>
@@ -63,11 +70,16 @@ const Form = ({ control, selectedService }) => {
                             <Controller
                                 name="service"
                                 control={control}
-                                render={({ field }) => <input type="text"
-                                    className="form-control fw-medium"
-                                    id="service"
-                                    defaultValue={selectedService.name}
-                                    readOnly />}
+                                render={({ field }) =>
+                                    <input type="text"
+                                        className="form-control fw-medium"
+                                        id="service"
+                                        defaultValue={serviceName}
+                                        onChange={handleServiceChange}
+                                        {...field}
+                                        readOnly
+                                    />}
+
 
                             />
                         </div>
@@ -79,11 +91,13 @@ const Form = ({ control, selectedService }) => {
                         <Controller
                             name="comments"
                             control={control}
-                            render={({ render }) => <textarea className="form-control"
-                                id="comments"
-                                rows="3"
-                                placeholder="Escribe aquí cualquier solicitud o comentario especial">
-                            </textarea>}
+                            render={({ field }) =>
+                                <textarea className="form-control"
+                                    id="comments"
+                                    rows="2"
+                                    placeholder="Escribe aquí cualquier solicitud o comentario especial"
+                                    {...field}>
+                                </textarea>}
 
                         />
                     </div>

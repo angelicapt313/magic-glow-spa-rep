@@ -16,7 +16,7 @@ function App() {
 
   const [showCart, setShowCart] = useState(false); // Estado para controlar la visibilidad del Cart
 
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState({ name: ''});
   const [showModal, setShowModal] = useState(false);
 
   const openModal = (service) => {
@@ -25,7 +25,7 @@ function App() {
   }
 
   const closeModal = () => {
-    setSelectedService(null);
+    setSelectedService({name: ''});
     setShowModal(false);
   }
 
