@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import CalendarComponent from './CalendarComponent';
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 const Form = ({ control, selectedService }) => {
-    const [serviceName, setServiceName] = useState(selectedService.name);
-    const [comments, setComments] = useState('');
-
-    const handleServiceChange = (e) => {
-        setServiceName(e.target.value);
-        setComments(e.target.value);
-    }
 
     return (
         <>
@@ -26,7 +19,8 @@ const Form = ({ control, selectedService }) => {
                                         className="form-control"
                                         id="fullName"
                                         placeholder="Escribe tu nombre completo"
-                                        required {...field}
+                                        required 
+                                        {...field}
                                     />}
 
                             />
@@ -42,7 +36,8 @@ const Form = ({ control, selectedService }) => {
                                         className="form-control"
                                         id="email"
                                         placeholder="tucorreo@ejemplo.com"
-                                        required {...field} />}
+                                        required 
+                                        {...field} />}
 
                             />
                         </div>
@@ -70,12 +65,11 @@ const Form = ({ control, selectedService }) => {
                             <Controller
                                 name="service"
                                 control={control}
+                                defaultValue={selectedService.name}
                                 render={({ field }) =>
                                     <input type="text"
                                         className="form-control fw-medium"
                                         id="service"
-                                        defaultValue={serviceName}
-                                        onChange={handleServiceChange}
                                         {...field}
                                         readOnly
                                     />}

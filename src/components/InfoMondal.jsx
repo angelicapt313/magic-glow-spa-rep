@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 import '../styles/InfoModal.css';
 import { useForm } from "react-hook-form";
@@ -7,9 +7,13 @@ function InfoModal({ service, closeModal }) {
   
   const { handleSubmit, control } = useForm();
 
+  const [formDataArray, setFormDataArray] = useState([]);
+
   if (!service) return null;
 
   const onSubmit = (data) => {
+    // Añadir datos al array incluyendo el servicio seleccionado
+    setFormDataArray([...formDataArray, {...data, service: service.name}]);
     closeModal();
   }
 
