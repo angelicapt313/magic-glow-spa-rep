@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CalendarComponent from './CalendarComponent';
 import { Controller } from "react-hook-form";
 
-const Form = ({ control, selectedService }) => {
+const Form = ({ control, selectedService, selectedDate, setSelectedDate }) => {
 
     return (
         <>
@@ -19,7 +19,7 @@ const Form = ({ control, selectedService }) => {
                                         className="form-control"
                                         id="fullName"
                                         placeholder="Escribe tu nombre completo"
-                                        required 
+                                        required
                                         {...field}
                                     />}
 
@@ -36,7 +36,7 @@ const Form = ({ control, selectedService }) => {
                                         className="form-control"
                                         id="email"
                                         placeholder="tucorreo@ejemplo.com"
-                                        required 
+                                        required
                                         {...field} />}
 
                             />
@@ -96,7 +96,22 @@ const Form = ({ control, selectedService }) => {
                         />
                     </div>
 
-                    <CalendarComponent />
+                    <div className="mb-3">
+                        <Controller
+                        name="selectedDate"
+                        control={control}
+                        defaultValue={selectedDate}
+                        render={({field}) => (
+                            <CalendarComponent 
+                            selectedDate={selectedDate} 
+                            onDateChange={setSelectedDate} />
+                        )}
+                        />
+
+
+
+                    </div>
+
                 </form>
             </div>
         </>

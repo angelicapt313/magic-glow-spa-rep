@@ -4,16 +4,21 @@ import '../styles/InfoModal.css';
 import { useForm } from "react-hook-form";
 
 function InfoModal({ service, closeModal }) {
-  
+
   const { handleSubmit, control } = useForm();
 
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const [formDataArray, setFormDataArray] = useState([]);
+
 
   if (!service) return null;
 
   const onSubmit = (data) => {
+
     // Añadir datos al array incluyendo el servicio seleccionado
-    setFormDataArray([...formDataArray, {...data, service: service.name}]);
+    setFormDataArray([...formDataArray, { ...data, service: service.name, selectedDate }]);
+
     closeModal();
   }
 
@@ -26,7 +31,11 @@ function InfoModal({ service, closeModal }) {
             <button type="button" className="btn-close" onClick={closeModal}></button>
           </div>
           <div className="modal-body">
-            <Form control={control} selectedService={service} />
+            <Form
+              control={control}
+              selectedService={service}
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate} />
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
