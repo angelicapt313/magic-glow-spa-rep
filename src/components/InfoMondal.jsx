@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Form from "./Form";
-import '../styles/InfoModal.css';
 import { useForm } from "react-hook-form";
+import AlertMessage  from './AlertMessage';
+import '../styles/InfoModal.css';
 
 function InfoModal({ service, closeModal }) {
 
@@ -11,15 +12,30 @@ function InfoModal({ service, closeModal }) {
 
   const [formDataArray, setFormDataArray] = useState([]);
 
+  const [showAlertMessage, setShowAlertMessage] = useState(false);
+
 
   if (!service) return null;
 
   const onSubmit = (data) => {
 
+    // Lógica de reservación
+    
+
+    // Mostrar Alerta después de confirmar reservación
+    setShowAlertMessage(true);
+
+    // Ocultar la alerta después de 3 segundos
+    setTimeout(() => {
+      setShowAlertMessage(false);
+      // Cerrar el modal después de ocultar la alerta
+      closeModal(); 
+
+    }, 3000)
+
     // Añadir datos al array incluyendo el servicio seleccionado
     setFormDataArray([...formDataArray, { ...data, service: service.name, selectedDate }]);
 
-    closeModal();
   }
 
   return (
@@ -36,6 +52,9 @@ function InfoModal({ service, closeModal }) {
               selectedService={service}
               selectedDate={selectedDate}
               setSelectedDate={setSelectedDate} />
+
+              {showAlertMessage && <AlertMessage message="Reservación Confirmada" type="success"/>}
+
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
