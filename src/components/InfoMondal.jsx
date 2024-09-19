@@ -16,12 +16,23 @@ function InfoModal({ service, closeModal }) {
 
   const [formVisible, setFormVisible] = useState(true);
 
+  const [messageType, setMessageType] = useState("");
+
 
   if (!service) return null;
 
   const onSubmit = (data) => {
 
     // Lógica de reservación
+
+    // Simulamos la operación exitosa
+    const isSuccess = true;
+
+    if (isSuccess) {
+      setMessageType("success");
+    } else {
+      setMessageType("error");
+    }
 
     // Ocultar el formulario, después mostrar la alerta...
     setFormVisible(false);
@@ -48,9 +59,9 @@ function InfoModal({ service, closeModal }) {
           <div className="modal-header">
             {formVisible && (
               <>
-              <h5 className="modal-title text-body-secondary">Completa la siguiente información.</h5>
-              <button type="button" className="btn-close" onClick={closeModal}></button>
-              </> 
+                <h5 className="modal-title text-body-secondary">Completa la siguiente información.</h5>
+                <button type="button" className="btn-close" onClick={closeModal}></button>
+              </>
             )}
           </div>
 
@@ -63,23 +74,27 @@ function InfoModal({ service, closeModal }) {
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate} />
             ) : (
-              // Mostrar Alerta en lugar del Formulario
-              <AlertMessage message="Reservación Confirmada" type="success" />
+              // Mostrar Alerta en lugar del Formulario>
+              messageType === "success" ? (
+                <AlertMessage message="Reservación Confirmada." type="success" />
+              ) : (
+                <AlertMessage message="Ocurrio un error intentelo más tarde." type="error"/>
+              )
             )}
-          </div>
-          <div className="modal-footer">
-            {formVisible && (
-
-              <button type="button" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
-                Confirmar Reservación.
-              </button>
-
-            )}
-          </div>
-
         </div>
+        <div className="modal-footer">
+          {formVisible && (
+
+            <button type="button" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
+              Confirmar Reservación.
+            </button>
+
+          )}
+        </div>
+
       </div>
     </div>
+    </div >
   );
 }
 
