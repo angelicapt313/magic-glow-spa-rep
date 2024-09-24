@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import CalendarComponent from './CalendarComponent';
 import { Controller } from "react-hook-form";
+import TimeComponent from './TimeComponent';
 
-const Form = ({ control, selectedService, selectedDate, setSelectedDate }) => {
+const Form = ({ control, selectedService, selectedDate, setSelectedDate, selectedTime, setSelectedTime }) => {
 
     return (
         <>
@@ -98,19 +99,32 @@ const Form = ({ control, selectedService, selectedDate, setSelectedDate }) => {
 
                     <div className="mb-3">
                         <Controller
-                        name="selectedDate"
+                            name="selectedDate"
+                            control={control}
+                            defaultValue={selectedDate}
+                            render={({ field }) => (
+                                <CalendarComponent
+                                    selectedDate={selectedDate}
+                                    onDateChange={setSelectedDate} />
+                            )}
+                        />
+                    </div>
+
+                    <div className="mb-3">
+                        <Controller
+                        name="selectedTime"
                         control={control}
-                        defaultValue={selectedDate}
-                        render={({field}) => (
-                            <CalendarComponent 
-                            selectedDate={selectedDate} 
-                            onDateChange={setSelectedDate} />
+                        defaultValue={selectedTime}
+                        render={({ field }) => (
+                            <TimeComponent 
+                            selectedTime={field.value} 
+                            onTimeChange={field.onChange}
+                            />
                         )}
                         />
-
-
-
                     </div>
+
+
 
                 </form>
             </div>

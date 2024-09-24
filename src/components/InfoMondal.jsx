@@ -7,7 +7,7 @@ import '../styles/InfoModal.css';
 function InfoModal({ service, closeModal }) {
 
   const { handleSubmit, control } = useForm();
-
+  
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [formDataArray, setFormDataArray] = useState([]);
@@ -18,11 +18,13 @@ function InfoModal({ service, closeModal }) {
 
   const [messageType, setMessageType] = useState("");
 
+  const [selectedTime, setSelectedTime] = useState("");
+
+
 
   if (!service) return null;
 
   const onSubmit = (data) => {
-
     // Lógica de reservación
 
     // Simulamos la operación exitosa
@@ -48,7 +50,7 @@ function InfoModal({ service, closeModal }) {
     }, 3000)
 
     // Añadir datos al array incluyendo el servicio seleccionado
-    setFormDataArray([...formDataArray, { ...data, service: service.name, selectedDate }]);
+    setFormDataArray([...formDataArray, { ...data, service: service.name, selectedDate, selectedTime }]);
 
   }
 
@@ -72,7 +74,11 @@ function InfoModal({ service, closeModal }) {
                 control={control}
                 selectedService={service}
                 selectedDate={selectedDate}
-                setSelectedDate={setSelectedDate} />
+                setSelectedDate={setSelectedDate} 
+                selectedTime={selectedTime}
+                setSelectedTime={setSelectedTime}
+                />
+
             ) : (
               // Mostrar Alerta en lugar del Formulario>
               messageType === "success" ? (
