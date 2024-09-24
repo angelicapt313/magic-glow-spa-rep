@@ -104,8 +104,8 @@ const Form = ({ control, selectedService, selectedDate, setSelectedDate, selecte
                             defaultValue={selectedDate}
                             render={({ field }) => (
                                 <CalendarComponent
-                                    selectedDate={selectedDate}
-                                    onDateChange={setSelectedDate} />
+                                    selectedDate={field.value}
+                                    onDateChange={field.onChange} />
                             )}
                         />
                     </div>
