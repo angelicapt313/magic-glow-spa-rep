@@ -1,13 +1,19 @@
 import React, { createContext, useState } from "react";
 
-export const  CartContext = createContext([]);
+export const CartContext = createContext([]);
 
-export const CartProvider = ({children}) => {
+export const CartProvider = ({ children }) => {
 
-    const [cart, setCart] = useState([]);
+    const [cartData, setCartData] = useState({
+        service: '',
+        fullName: '',
+        selectedTime: '',
+        selectedDate: '',
+        status: ''
+    });
 
     const addShopCart = (product) => {
-        setCart((prevCart) => {
+        setCartData((prevCart) => {
             const productExists = prevCart.find(item => item.ProductID === product.ProductID);
 
             if (productExists) {
@@ -24,11 +30,11 @@ export const CartProvider = ({children}) => {
     };
 
     const removeFromCart = (productId) => {
-        setCart((prevCart) => prevCart.filter(item => item.ProductID !== productId));
+        setCartData((prevCart) => prevCart.filter(item => item.ProductID !== productId));
     }
 
     return (
-        <CartContext.Provider value={{ cart, addShopCart, removeFromCart }}>
+        <CartContext.Provider value={{ cartData, setCartData, addShopCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     );

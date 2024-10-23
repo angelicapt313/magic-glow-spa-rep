@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "./Form";
 import { useForm } from "react-hook-form";
 import AlertMessage from './AlertMessage';
 import '../styles/InfoModal.css';
+import { CartContext } from "../context/CartContext";
 
 function InfoModal({ service, closeModal }) {
 
   const { handleSubmit, control } = useForm();
-  
+
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [formDataArray, setFormDataArray] = useState([]);
@@ -20,13 +21,13 @@ function InfoModal({ service, closeModal }) {
 
   const [selectedTime, setSelectedTime] = useState("");
 
+  const { cartData, setCartData } = useContext(CartContext);
 
 
   if (!service) return null;
 
   const onSubmit = (data) => {
     // Lógica de reservación
-
     // Simulamos la operación exitosa
     const isSuccess = true;
 
@@ -36,7 +37,7 @@ function InfoModal({ service, closeModal }) {
       setMessageType("error");
     }
 
-    // Ocultar el formulario, después mostrar la alerta...
+    // Ocultar el formulario, después mostrar la alerta
     setFormVisible(false);
 
     // Mostrar Alerta después de confirmar reservación
@@ -50,7 +51,14 @@ function InfoModal({ service, closeModal }) {
     }, 3000)
 
     // Añadir datos al array incluyendo el servicio seleccionado
-    setFormDataArray([...formDataArray, { ...data, service: service.name, selectedDate, selectedTime }]);
+    setCartData({
+      ...cartData,
+      service: service.name,
+      fullName: data.fullName,
+      selectedDate: data.selectedDate,
+      selectedTime: data.selectedTime,
+      status: 'Confirmado'
+    });
 
   }
 
@@ -74,32 +82,32 @@ function InfoModal({ service, closeModal }) {
                 control={control}
                 selectedService={service}
                 selectedDate={selectedDate}
-                setSelectedDate={setSelectedDate} 
+                setSelectedDate={setSelectedDate}
                 selectedTime={selectedTime}
                 setSelectedTime={setSelectedTime}
-                />
+              />
 
             ) : (
               // Mostrar Alerta en lugar del Formulario>
               messageType === "success" ? (
                 <AlertMessage message="Reservación Confirmada." type="success" />
               ) : (
-                <AlertMessage message="Ocurrio un error intentelo más tarde." type="error"/>
+                <AlertMessage message="Ocurrio un error intentelo más tarde." type="error" />
               )
             )}
+          </div>
+          <div className="modal-footer">
+            {formVisible && (
+
+              <button type="button" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
+                Confirmar Reservación.
+              </button>
+
+            )}
+          </div>
+
         </div>
-        <div className="modal-footer">
-          {formVisible && (
-
-            <button type="button" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
-              Confirmar Reservación.
-            </button>
-
-          )}
-        </div>
-
       </div>
-    </div>
     </div >
   );
 }

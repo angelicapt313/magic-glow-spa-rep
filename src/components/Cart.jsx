@@ -4,38 +4,52 @@ import '../styles/cart.css';
 
 function Cart({ toggleCart }) {
 
-    const { cart, removeFromCart } = useContext(CartContext);
+  const { cartData } = useContext(CartContext);
 
-    // const grandTotal = cart.reduce((acc, product) => acc + product.ProductPrice * product.quantityAdded, 0);
+  // const grandTotal = cart.reduce((acc, product) => acc + product.ProductPrice * product.quantityAdded, 0);
 
-    return (
+  return (
+    <>
+
       <div className="cart-overlay d-flex justify-content-center align-items-center">
-      <div className="cart-container d-flex flex-column vh-100 position-relative ms-auto">
-      <button className="btn-close rounded-circle p-2" onClick={toggleCart}></button>
-        <div className="cart-list w-70 bg-white p-4 flex-grow-1">
-          <ul className="list-unstyled">
-            <li className="mb-3">
-              <strong>Servicio:</strong> Servicio Ejemplo
-            </li>
-            <li className="mb-3">
-              <strong>Nombre:</strong> Nombre del Cliente
-            </li>
-            <li className="mb-3">
-              <strong>Horario y Fecha:</strong> 12:00 PM, 12 de Agosto
-            </li>
-            <li className="mb-3">
-              <strong>Estatus:</strong> Confirmado
-            </li>
-          </ul>
+        <div className="cart-container d-flex flex-column vh-100 position-relative ms-auto">
+          <button className="btn-close rounded-circle p-2" onClick={toggleCart}></button>
+          <div className="cart-list w-70 bg-white p-4 flex-grow-1">
+            {!cartData.service ? (
+              <p className="text-center fw-bold">No hay servicios en el carrito.</p>
+            ) : (
+              <ul className="list-unstyled">
+                <li className="mb-3">
+                  <strong>Servicio:</strong> {cartData.service}
+                </li>
+                <li className="mb-3">
+                  <strong>Nombre:</strong> {cartData.fullName}
+                </li>
+                <li className="mb-3">
+                  <strong>Fecha:</strong> {cartData.selectedDate.toLocaleString()}
+                </li>
+                <li className="mb-3">
+                  <strong>Horario:</strong> {cartData.selectedTime}
+                </li>
+                <li className="mb-3">
+                  <strong>Estatus:</strong> {cartData.status}
+                </li>
+              </ul>
+            )}
+
+
+
+          </div>
+          <div className="cart-footer bg-dark bg-opacity-75 p-3 text-center text-white">
+            <button className="btn">MGS</button>
+          </div>
         </div>
-        <div className="cart-footer bg-dark bg-opacity-75 p-3 text-center text-white">
-          <button className="btn">Al Lien</button>
-        </div>
+
       </div>
-    
-    </div>
-  
-    );
+
+
+    </>
+  );
 
 }
 

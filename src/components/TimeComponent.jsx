@@ -5,6 +5,9 @@ import TimePicker from "react-time-picker";
 import '../styles/timeComponent.css'
 
 const TimeComponent = ({ selectedTime, onTimeChange }) => {
+    const handleTimeChange = (newTime) => {
+        onTimeChange(newTime);
+    }
 
     return (
         <div className="position-relative">
@@ -14,7 +17,7 @@ const TimeComponent = ({ selectedTime, onTimeChange }) => {
                     // value={value}
                     // onChange={(newValue) => setValue(newValue)}
                     value={selectedTime}
-                    onChange={onTimeChange}
+                    onChange={handleTimeChange}
                     format="hh:mm a"
                     clearIcon={null}
                     clockIcon={null}
