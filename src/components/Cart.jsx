@@ -26,7 +26,7 @@ function Cart({ toggleCart }) {
                   <strong>Nombre:</strong> {cartData.fullName}
                 </li>
                 <li className="mb-3">
-                  <strong>Fecha:</strong> {cartData.selectedDate.toLocaleString()}
+                  <strong>Fecha:</strong> {cartData.selectedDate ? new Date(cartData.selectedDate).toLocaleDateString() : 'No disponible'}
                 </li>
                 <li className="mb-3">
                   <strong>Horario:</strong> {cartData.selectedTime}
