@@ -1,17 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 import { useForm } from "react-hook-form";
 import AlertMessage from './AlertMessage';
 import '../styles/InfoModal.css';
-import { CartContext } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
 
 function InfoModal({ service, closeModal }) {
 
   const { handleSubmit, control } = useForm();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const [formDataArray, setFormDataArray] = useState([]);
 
   const [showAlertMessage, setShowAlertMessage] = useState(false);
 
@@ -21,7 +19,7 @@ function InfoModal({ service, closeModal }) {
 
   const [selectedTime, setSelectedTime] = useState("");
 
-  const { cartData, setCartData } = useContext(CartContext);
+  const { addAppointment } = useCart();
 
 
   if (!service) return null;
@@ -51,14 +49,16 @@ function InfoModal({ service, closeModal }) {
     }, 3000)
 
     // Añadir datos al array incluyendo el servicio seleccionado
-    setCartData({
-      ...cartData,
+    const newAppointment = {
+      id: service.id,
       service: service.name,
       fullName: data.fullName,
       selectedDate: data.selectedDate,
       selectedTime: data.selectedTime,
       status: 'Confirmado'
-    });
+    };
+
+    addAppointment(newAppointment);
 
   }
 
