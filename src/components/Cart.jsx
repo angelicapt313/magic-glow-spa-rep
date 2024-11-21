@@ -1,5 +1,6 @@
 import { useCart } from '../context/CartContext';
 import '../styles/cart.css';
+import cosmetico from '../assets/images/cosmetico.png';
 
 function Cart({ toggleCart }) {
 
@@ -18,15 +19,23 @@ function Cart({ toggleCart }) {
               <p className="text-center fw-bold">No hay servicios en el carrito.</p>
             ) : (
               cartData.map((appointment, index) => (
-                <ul className="list-unstyled">
-                  <h5>Detalles del servicio</h5>
-                  <li key={index} className="mb-3">
-                    <p>{appointment.service} - {appointment.fullName}</p> 
-                  </li>
-                  <li className="mb-3">
-                    <p>{appointment.selectedDate = new Date(appointment.selectedDate).toLocaleDateString() }</p> - <p>{appointment.selectedTime}</p> 
-                  </li>
-                </ul>
+                <div className="card my-1" key={index}>
+                  <div className="card-body d-flex justify-content-evenly align-items-center">
+                    <img src={cosmetico} className='image-service' alt='Cosmetico.png'/>
+
+                    <ul className="list-unstyled">
+
+                      <li className="mb-3">
+                        <p>{appointment.service} - {appointment.fullName}</p>
+                      </li>
+                      <li className="mb-3">
+                        <p>{new Date(appointment.selectedDate).toLocaleDateString()} - {appointment.selectedTime}hrs</p>
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+
               ))
 
             )}

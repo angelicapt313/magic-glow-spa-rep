@@ -52,6 +52,7 @@ function InfoModal({ service, closeModal }) {
     const newAppointment = {
       id: service.id,
       service: service.name,
+      image: service.image,
       fullName: data.fullName,
       selectedDate: data.selectedDate,
       selectedTime: data.selectedTime,

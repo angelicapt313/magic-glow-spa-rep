@@ -18,7 +18,7 @@
   .cart-container {
     background-color: white;
     width: 90%;
-    max-width: 500px;
+    max-width: 450px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -28,5 +28,9 @@
   .btn-close {
     background-color: var(--dark-purple);
     margin-left: auto;
+  }
+
+  .image-service{
+    width: 100px;
   }
   
