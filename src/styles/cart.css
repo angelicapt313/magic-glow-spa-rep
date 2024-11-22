@@ -34,3 +34,7 @@
     width: 100px;
   }
   
+
+  p{
+    font-family: var(--font-alexandria);
+  }

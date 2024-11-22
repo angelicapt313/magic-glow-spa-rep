@@ -19,21 +19,23 @@ function Cart({ toggleCart }) {
               <p className="text-center fw-bold">No hay servicios en el carrito.</p>
             ) : (
               cartData.map((appointment, index) => (
+                
                 <div className="card my-1" key={index}>
-                  <div className="card-body d-flex justify-content-evenly align-items-center">
-                    <img src={cosmetico} className='image-service' alt='Cosmetico.png'/>
+                  
+                  <div className="card-body d-flex justify-content-evenly align-items-center ">
+                    <img src={appointment.image} className='image-service' alt='Cosmetico.png' />
 
-                    <ul className="list-unstyled">
+                    <ul className="list-unstyled align-self-center m-0">
 
-                      <li className="mb-3">
-                        <p>{appointment.service} - {appointment.fullName}</p>
+                      <li className="">
+                        <p className='m-0 p-1'> {appointment.fullName}</p>
                       </li>
-                      <li className="mb-3">
-                        <p>{new Date(appointment.selectedDate).toLocaleDateString()} - {appointment.selectedTime}hrs</p>
+                      <li className="">
+                        <p className='m-0 p-1'>{new Date(appointment.selectedDate).toLocaleDateString()} - {appointment.selectedTime}hrs</p>
                       </li>
                     </ul>
                   </div>
-
+                  
                 </div>
 
               ))
