@@ -31,7 +31,11 @@ function Cart({ toggleCart }) {
                         <p className='m-0 p-1'> {appointment.fullName}</p>
                       </li>
                       <li className="">
-                        <p className='m-0 p-1'>{new Date(appointment.selectedDate).toLocaleDateString()} - {appointment.selectedTime}hrs</p>
+                        <p className='m-0 p-1 text-capitalize'>{new Date(appointment.selectedDate).toLocaleDateString('es-Es', {
+                          day: 'numeric',
+                          month: 'short',
+                          year: '2-digit'
+                        })} - {appointment.selectedTime}hrs</p>
                       </li>
                     </ul>
                   </div>
