@@ -20,7 +20,7 @@ function Cart({ toggleCart }) {
             ) : (
               cartData.map((appointment, index) => (
                 
-                <div className="card my-1" key={index}>
+                <div className="card card-effect my-2" key={index}>
                   
                   <div className="card-body d-flex justify-content-evenly align-items-center ">
                     <img src={appointment.image} className='image-service' alt='Cosmetico.png' />
@@ -35,7 +35,10 @@ function Cart({ toggleCart }) {
                           day: 'numeric',
                           month: 'short',
                           year: '2-digit'
-                        })} - {appointment.selectedTime}hrs</p>
+                        })} </p>
+                      </li>
+                      <li>
+                        <p>{appointment.selectedTime}hrs</p>
                       </li>
                     </ul>
                   </div>
