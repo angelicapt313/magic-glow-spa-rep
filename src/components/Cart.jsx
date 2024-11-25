@@ -18,9 +18,9 @@ function Cart({ toggleCart }) {
           {cartData.length === 0 ? (
             <p className="text-center fw-bold">No hay servicios en el carrito.</p>
           ) : (
-            cartData.map((appointment, index) => (
+            cartData.map((appointment) => (
 
-              <div className="card card-effect my-2" key={index}>
+              <div className="card card-effect my-2" key={appointment.id}>
                 <div className="card-body d-flex justify-content-evenly align-items-center ">
                   <img src={appointment.image} className='image-service' alt='Cosmetico.png' />
 
