@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CalendarComponent from './CalendarComponent';
 import { Controller } from "react-hook-form";
 import TimeComponent from './TimeComponent';
+import { useCart } from '../context/CartContext';
 
 const Form = ({ control, selectedService, selectedDate, setSelectedDate, selectedTime, setSelectedTime }) => {
+
+    const { cartData } = useCart();
 
     return (
         <>
@@ -15,13 +18,14 @@ const Form = ({ control, selectedService, selectedDate, setSelectedDate, selecte
                             <Controller
                                 name="fullName"
                                 control={control}
+                                defaultValue={cartData[0]?.fullName || ""}
                                 render={({ field }) =>
                                     <input type="text"
                                         className="form-control"
                                         id="fullName"
                                         placeholder="Escribe tu nombre completo"
-                                        required
                                         {...field}
+                                        required
                                     />}
 
                             />
@@ -32,13 +36,14 @@ const Form = ({ control, selectedService, selectedDate, setSelectedDate, selecte
                             <Controller
                                 name="email"
                                 control={control}
+                                defaultValue={cartData[0]?.email || ""}
                                 render={({ field }) =>
                                     <input type="email"
                                         className="form-control"
                                         id="email"
                                         placeholder="tucorreo@ejemplo.com"
-                                        required
                                         {...field} />}
+                                required
 
                             />
                         </div>
@@ -50,12 +55,14 @@ const Form = ({ control, selectedService, selectedDate, setSelectedDate, selecte
                             <Controller
                                 name="phone"
                                 control={control}
+                                defaultValue={cartData[0]?.phone || ""}
                                 render={({ field }) =>
                                     <input type="number"
                                         className="form-control"
                                         id="phone"
                                         placeholder="(123) 456-7890"
-                                        required {...field}
+                                        {...field}
+                                        required
                                     />}
 
                             />
@@ -66,7 +73,7 @@ const Form = ({ control, selectedService, selectedDate, setSelectedDate, selecte
                             <Controller
                                 name="service"
                                 control={control}
-                                defaultValue={selectedService.name}
+                                defaultValue={selectedService.name || ""}
                                 render={({ field }) =>
                                     <input type="text"
                                         className="form-control fw-medium"
@@ -86,6 +93,7 @@ const Form = ({ control, selectedService, selectedDate, setSelectedDate, selecte
                         <Controller
                             name="comments"
                             control={control}
+                            defaultValue={cartData[0]?.comments || ""}
                             render={({ field }) =>
                                 <textarea className="form-control"
                                     id="comments"
@@ -112,22 +120,22 @@ const Form = ({ control, selectedService, selectedDate, setSelectedDate, selecte
 
                     <div className="mb-3">
                         <Controller
-                        name="selectedTime"
-                        control={control}
-                        defaultValue={selectedTime}
-                        render={({ field }) => (
-                            <TimeComponent 
-                            selectedTime={field.value} 
-                            onTimeChange={field.onChange}
-                            />
-                        )}
+                            name="selectedTime"
+                            control={control}
+                            defaultValue={selectedTime}
+                            render={({ field }) => (
+                                <TimeComponent
+                                    selectedTime={field.value}
+                                    onTimeChange={field.onChange}
+                                />
+                            )}
                         />
                     </div>
 
 
 
-                </form>
-            </div>
+                </form >
+            </div >
         </>
     )
 }
