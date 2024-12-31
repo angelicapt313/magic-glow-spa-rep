@@ -28,17 +28,20 @@ const TimeComponent = ({ selectedTime, onTimeChange }) => {
                         className="bg-transparent border-1"
                         value={selectedTime}
                         onChange={handleTimeChange}
+                        disableClock={true}
+                        minTime="10:00"
+                        maxTime="18:00"
                         format="hh:mm a"
                         clearIcon={null}
                         clockIcon={null}
-                        clockProps={{
-                            size: 130, // Tamaño del reloj
-                            hourHandWidth: 4, // Grosor de la aguja de las horas
-                            minuteHandWidth: 2, // Grosor de la aguja de los minutos
-                            renderNumbers: true, // Muestra los números en el reloj
-                            renderMinuteMarks: true, // Muestra las marcas de minutos
+                        // clockProps={{
+                        //     size: 130, // Tamaño del reloj
+                        //     hourHandWidth: 4, // Grosor de la aguja de las horas
+                        //     minuteHandWidth: 2, // Grosor de la aguja de los minutos
+                        //     renderNumbers: true, // Muestra los números en el reloj
+                        //     renderMinuteMarks: true, // Muestra las marcas de minutos
 
-                        }}
+                        // }}
                     />
                 )}
                 <p>Horario seleccionado: <span className="fw-bold">{selectedTime} hrs</span></p>
