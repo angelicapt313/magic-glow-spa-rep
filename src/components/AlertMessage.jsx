@@ -8,10 +8,10 @@ const AlertMessage = ({message, type}) => {
     let alertClass;
 
     if(type === 'success'){
-        alertIcon = <img src={successImg} />
+        alertIcon = <img src={successImg} alt="icon" />
         alertClass = 'text-success';
     } else if(type === 'error'){
-        alertIcon = <img src={errorImg} />
+        alertIcon = <img src={errorImg} alt="icon"/>
         alertClass = 'text-danger';
     }
 

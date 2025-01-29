@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import '../styles/servicesCard.css';
 
 const ServicesCard = ({ service, openModal }) => {
-
-    const [quantity, setQuantity] = useState(0);
-
 
     return (
         <div className="card-css p-1 my-3 text-center flex" >

@@ -1,6 +1,5 @@
 import { useCart } from '../context/CartContext';
 import '../styles/cart.css';
-import cosmetico from '../assets/images/cosmetico.png';
 
 function Cart({ toggleCart }) {
 

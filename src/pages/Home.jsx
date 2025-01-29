@@ -28,7 +28,7 @@ const Home = () => {
                                 <span className="shadow"></span>
                                 <span className="edge"></span>
                                 <span className="calendar front text">
-                                    <img src={Calendar} width={30} className="p-1" /> Reserva
+                                    <img alt="button-reserv" src={Calendar} width={30} className="p-1" /> Reserva
                                 </span>
                                
                             </button>
