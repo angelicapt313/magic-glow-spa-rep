@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import AlertMessage from './AlertMessage';
 import '../styles/InfoModal.css';
 import { useCart } from "../context/CartContext";
+import { getAppointments, createAppointment } from "../services/reservations";
 
 function InfoModal({ service, closeModal }) {
 
@@ -24,7 +25,11 @@ function InfoModal({ service, closeModal }) {
 
   if (!service) return null;
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+
+
+    await createAppointment(data);
+
     // Lógica de reservación
     // Simulamos la operación exitosa
     const isSuccess = true;
