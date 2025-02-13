@@ -11,6 +11,7 @@ import Reservation from './pages/Reservation';
 import Cart from './components/Cart';
 import { useState } from 'react';
 import InfoModal from './components/InfoMondal';
+import Dashboard from './pages/Dashboard';
 
 function App() {
 
@@ -44,6 +45,8 @@ function App() {
           element={<Services openModal={openModal} />} />
           <Route path='/reservation' 
           element={<Reservation />} />
+          <Route path='/dashboard' 
+          element={<Dashboard />} />
         </Routes>
 
         {showCart && 
