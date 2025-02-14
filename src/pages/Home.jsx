@@ -6,40 +6,51 @@ import Calendar from '../assets/images/calendar.png';
 
 const Home = () => {
     return (
-        <div className="container d-flex flex-column justify-content-center">
-            <h1 className="text-center m-4">My crazy pink diary! </h1>
-            
 
-                <div className="section d-md-flex justify-content-md-center align-items-md-center">
+        <div className="h-screen flex flex-col items-center justify-center p-6">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 text-center">
+                My crazy pink diary!
+            </h1>
 
-                    <section className="card" style={{width:350}}>
-                        <div className="card-body ">
-                            <video src={magicVideo} className="video-magic" autoPlay loop controls />
-                            <p className="fs-4 m-3 text-center fst-italic">It's glow o'clock!</p>
-                        </div>
-                    </section>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-10 w-full max-w-5xl">
 
-                    <section className="info p-3 d-flex flex-column align-items-center">
-                        <p className="text-center m-2">My <span className="fw-bolder">magic</span> is crafted with dedication, quality, and care... </p>
-                        <p className="text-end">Your <span className="fw-bolder">glow</span> awaits here.</p>
+                <section className="flex justify-center w-full md:w-1/2">
+                    <div className="bg-white shadow-xl rounded-2xl overflow-hidden max-w-sm md:max-w-lg lg:max-w-xl p-6">
+                        <video
+                            src={magicVideo}
+                            className="w-full rounded-lg"
+                            autoPlay
+                            loop
+                            controls
+                        />
+                        <p className="text-2xl my-3 text-center italic">
+                            It's glow o'clock!
+                        </p>
+                    </div>
+                </section>
 
-                        <Link to="/services" >
-                            <button className="text-center rounded-4">
-                                <span className="shadow"></span>
-                                <span className="edge"></span>
-                                <span className="calendar front text">
-                                    <img alt="button-reserv" src={Calendar} width={30} className="p-1" /> Reserva
-                                </span>
-                               
-                            </button>
-                        </Link>
-                    </section>
-                </div>
+                <section className="text-center md:text-left w-full md:w-1/2">
+                    <p className="text-lg mb-3">
+                        My magic is crafted with dedication, quality, and care...
+                    </p>
+                    <p className="text-lg text-right mb-6">
+                        Your glow awaits here.
+                    </p>
 
+                    <Link to="/services">
+                        <button className="btn-reservation w-48 rounded-lg">
+                            <span className="shadow"></span>
+                            <span className="edge"></span>
+                            <span className="calendar front ">
+                                <img alt="button-reserv" src={Calendar} width={30} /> Reserva
+                            </span>
+                        </button>
+                    </Link>
+                </section>
 
-            
-
+            </div>
         </div>
+
     );
 }
 
