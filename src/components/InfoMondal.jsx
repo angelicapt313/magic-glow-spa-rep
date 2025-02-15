@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import { useForm } from "react-hook-form";
 import AlertMessage from './AlertMessage';
@@ -21,6 +21,14 @@ function InfoModal({ service, closeModal }) {
   const [selectedTime, setSelectedTime] = useState("");
 
   const { addAppointment } = useCart();
+
+  // Evitar scroll en Services.jsx cuando el modal está abierto
+  useEffect(() => {
+    document.body.classList.add("overflow-hidden");
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, []);
 
 
   if (!service) return null;
@@ -69,52 +77,58 @@ function InfoModal({ service, closeModal }) {
   }
 
   return (
-    <div className="modal show d-block" tabIndex="-1" role="dialog">
-      <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable rounded-bottom-pill" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            {formVisible && (
-              <>
-                <h5 className="modal-title text-body-secondary">Completa la siguiente información.</h5>
-                <button type="button" className="btn-close" onClick={closeModal}></button>
-              </>
-            )}
-          </div>
 
-          <div className="modal-body h-100">
-            {/* Mostrar Form o Alerta */}
-            {formVisible ? (
-              <Form
-                control={control}
-                selectedService={service}
-                selectedDate={selectedDate}
-                setSelectedDate={setSelectedDate}
-                selectedTime={selectedTime}
-                setSelectedTime={setSelectedTime}
-              />
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="info-modal shadow-lg backdrop-blur-md w-full max-w-lg rounded-lg overflow-hidden max-h-[90vh] overflow-y-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between p-3 border-b border-gray-400">
+          {formVisible && (
+            <>
+              <h5 className="text-lg font-medium text-white-700">Completa la siguiente información.</h5>
 
-            ) : (
-              // Mostrar Alerta en lugar del Formulario>
-              messageType === "success" ? (
-                <AlertMessage message="Reservación Confirmada." type="success" />
-              ) : (
-                <AlertMessage message="Ocurrio un error intentelo más tarde." type="error" />
-              )
-            )}
-          </div>
-          <div className="modal-footer">
-            {formVisible && (
-
-              <button type="button" className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
-                Confirmar Reservación.
+              <button
+                type="button"
+                className="text-lg text-gray-400 hover:text-gray-600"
+                onClick={closeModal}
+              >
+                ✖
               </button>
-
-            )}
-          </div>
-
+            </>
+          )}
         </div>
+
+        {/* Body */}
+        <div className="p-2">
+          {formVisible ? (
+            <Form
+              control={control}
+              selectedService={service}
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              selectedTime={selectedTime}
+              setSelectedTime={setSelectedTime}
+            />
+          ) : messageType === "success" ? (
+            <AlertMessage message="Reservación Confirmada." type="success" />
+          ) : (
+            <AlertMessage message="Ocurrió un error, inténtelo más tarde." type="error" />
+          )}
+        </div>
+
+        {/* Footer */}
+        {formVisible && (
+          <div className="p-4 border-t border-gray-400 flex justify-end">
+            <button
+              type="button"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              onClick={handleSubmit(onSubmit)}
+            >
+              Confirmar Reservación
+            </button>
+          </div>
+        )}
       </div>
-    </div >
+    </div>
   );
 }
 

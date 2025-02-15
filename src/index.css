@@ -15,3 +15,7 @@
     --font-montserrat: "Montserrat", sans-serif;
     --font-alexandria: "Alexandria", sans-serif;
 }
+
+.info-modal{
+    background-color: var(--beige);
+}
