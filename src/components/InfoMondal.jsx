@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import { useForm } from "react-hook-form";
 import AlertMessage from './AlertMessage';
-import '../styles/InfoModal.css';
 import { useCart } from "../context/CartContext";
 import { getAppointments, createAppointment } from "../services/reservations";
 
