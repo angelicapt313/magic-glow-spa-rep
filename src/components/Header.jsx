@@ -1,30 +1,28 @@
 import React from 'react';
 import cosmetico from '../assets/images/cosmetico.png'
 import { Link } from 'react-router-dom';
-import '../styles/header.css';
 import imgCart from '../assets/images/imgCart.svg';
 import close from '../assets/images/close.svg';
 
 const Header = ({ toggleCart, showCart }) => {
     return (
-        <nav className="navbar navbar-expand-lg">
-            <div className="container-fluid">
-                <Link to="/" className="navbar-brand magic-glow-spa">
-                    <img alt='Cosmetico png' src={cosmetico} className='mx-2' style={{ width: '30px', height: '30px' }} />
-                    Magic Glow Spa
+        
+        <nav className="py-4 px-4 md:px-8">
+            <div className="flex items-center justify-between">
+                <Link to="/" className="magic-glow flex items-center text-lg font-semibold no-underline">
+                    <img alt="Cosmetico png" src={cosmetico} className="w-8 h-8 mr-2" />
+                    Magic Glow
                 </Link>
-                <div className="flex ">
-                    <button className='btn' onClick={toggleCart}>
-                        <img
-                            src={showCart ? close : imgCart}
-                            alt={showCart ? 'Close Cart' : 'Open Cart'}
-                            className="icon z-3"
-                            style={{ width: '30px', height: '30px' }}
-                        />
-                    </button>
-                </div>
+                <button onClick={toggleCart} className="focus:outline-none">
+                    <img
+                        src={showCart ? close : imgCart}
+                        alt={showCart ? 'Close Cart' : 'Open Cart'}
+                        className="w-8 h-8"
+                    />
+                </button>
             </div>
         </nav>
+
     )
 }
 

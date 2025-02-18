@@ -19,3 +19,11 @@
 .info-modal{
     background-color: var(--beige);
 }
+
+.magic-glow{
+    color: var(--black)
+}
+
+.magic-glow:hover{
+    color: var(--dark-purple);
+}
