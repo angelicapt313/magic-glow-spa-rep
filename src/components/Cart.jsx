@@ -1,7 +1,15 @@
+import { React, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
-import '../styles/cart.css';
 
 function Cart({ toggleCart }) {
+
+  // Evitar scroll en Cart.jsx cuando el carrito está abierto.
+  useEffect(() => {
+    document.body.classList.add("overflow-hidden");
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, []);
 
   const { cartData } = useCart();
 
@@ -9,43 +17,59 @@ function Cart({ toggleCart }) {
 
   return (
 
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end">
 
-    <div className="cart-overlay d-flex justify-content-center align-items-center">
-      <div className="cart-container d-flex flex-column vh-100 position-relative ms-auto">
-        <button className="btn-close rounded-circle p-2" onClick={toggleCart}></button>
-        <div className="cart-list w-70 bg-white p-4 flex-grow-1 overflow-auto">
-          {cartData.length === 0 ? (
-            <p className="text-center fw-bold">No hay servicios en el carrito.</p>
-          ) : (
-            cartData.map((appointment) => (
+    {/* Carrito */}
+    <div className="relative sm:max-w-[80%] md:w-96 h-screen sm:h-auto bg-white shadow-lg flex flex-col">
+      
+      {/* Botón de Cerrar */}
+      <button
+        className="button-close absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+        onClick={toggleCart}
+      >
+        ✖
+      </button>
 
-              <div className="card card-effect my-2" key={appointment.id}>
-                <div className="card-body d-flex justify-content-evenly align-items-center ">
-                  <img src={appointment.image} className='image-service' alt='Cosmetico.png' />
+      {/* Contenedor del Carrito */}
+      <div className="p-4 mt-10 overflow-y-auto max-h-screen">
+        {cartData.length === 0 ? (
+          <p className="text-center font-semibold text-gray-700">
+            No hay servicios en el carrito.
+          </p>
+        ) : (
+          cartData.map((appointment) => (
+            <div
+              key={appointment.id}
+              className="bg-gray-100 rounded-lg shadow-md p-4 mb-2 flex items-center"
+            >
+              {/* Imagen del Servicio */}
+              <img
+                src={appointment.image}
+                className="w-16 h-16 rounded-lg object-cover"
+                alt="Cosmetico"
+              />
 
-                  <ul className="list-unstyled align-self-center m-0">
-
-                    <li className="">
-                      <p className='m-0 p-1'> {appointment.fullName}</p>
-                    </li>
-                    <li className="">
-                      <p className='m-0 p-1 text-capitalize'>{new Date(appointment.selectedDate).toLocaleDateString('es-Es', {
-                        day: 'numeric',
-                        month: 'short',
-                        year: '2-digit'
-                      })} </p>
-                    </li>
-                    <li>
-                      <p>{appointment.selectedTime}hrs</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
+              {/* Información de la Cita */}
+              <ul className="ml-4 flex flex-col">
+                <li className="font-semibold text-gray-800">
+                  {appointment.fullName}
+                </li>
+                <li className="text-sm text-gray-600">
+                  {new Date(appointment.selectedDate).toLocaleDateString(
+                    "es-ES",
+                    { day: "numeric", month: "short", year: "2-digit" }
+                  )}
+                </li>
+                <li className="text-sm text-gray-600">
+                  {appointment.selectedTime} hrs
+                </li>
+              </ul>
+            </div>
+          ))
+        )}
       </div>
     </div>
+  </div>
   );
 
 }

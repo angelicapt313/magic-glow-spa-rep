@@ -27,3 +27,9 @@
 .magic-glow:hover{
     color: var(--dark-purple);
 }
+
+.button-close{
+    background-color: var(--dark-purple);
+    padding: 7px 12px;
+    border-radius: 50%;
+}
