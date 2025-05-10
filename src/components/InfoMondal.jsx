@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
-import { useForm } from "react-hook-form";
+import { useForm  } from "react-hook-form";
 import AlertMessage from './AlertMessage';
 import { useCart } from "../context/CartContext";
-import { getAppointments, createAppointment } from "../services/reservations";
+import { createAppointment } from "../services/appointmentService";
+import { formatToUTC } from "../utils/formatToUTC";
 
 function InfoModal({ service, closeModal }) {
 
-  const { handleSubmit, control } = useForm();
-
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const { control, handleSubmit } = useForm();
+  const { addAppointment } = useCart();
 
   const [showAlertMessage, setShowAlertMessage] = useState(false);
-
   const [formVisible, setFormVisible] = useState(true);
-
   const [messageType, setMessageType] = useState("");
 
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState("");
-
-  const { addAppointment } = useCart();
 
   // Evitar scroll en Services.jsx cuando el modal está abierto
   useEffect(() => {
@@ -29,54 +26,39 @@ function InfoModal({ service, closeModal }) {
     };
   }, []);
 
-
-  if (!service) return null;
-
   const onSubmit = async (data) => {
+    const newAppointment = {
+      fullName: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      comments: data.comments,
+      service: service.name,
+      selectedDate: formatToUTC(data.selectedDate, data.selectedTime),
+      selectedTime: data.selectedTime
+    };
 
-
-    await createAppointment(data);
-
-    // Lógica de reservación
-    // Simulamos la operación exitosa
-    const isSuccess = true;
-
-    if (isSuccess) {
+    try {
+      await createAppointment(newAppointment);
       setMessageType("success");
-    } else {
+    } catch (error) {
       setMessageType("error");
     }
 
-    // Ocultar el formulario, después mostrar la alerta
     setFormVisible(false);
-
-    // Mostrar Alerta después de confirmar reservación
     setShowAlertMessage(true);
 
-    // Ocultar la alerta después de 3 segundos
     setTimeout(() => {
       setShowAlertMessage(false);
-      // Cerrar el modal después de ocultar la alerta
       closeModal();
-    }, 3000)
+    }, 3000);
 
-    // Añadir datos al array incluyendo el servicio seleccionado
-    const newAppointment = {
-      id: service.id,
-      service: service.name,
-      image: service.image,
-      fullName: data.fullName,
-      selectedDate: data.selectedDate,
-      selectedTime: data.selectedTime,
-      status: 'Confirmado'
-    };
+    // Guarda en carrito para vista previa
+    addAppointment({ ...newAppointment, status: "Confirmado" });
+  };
 
-    addAppointment(newAppointment);
-
-  }
+  if (!service) return null;
 
   return (
-
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="info-modal shadow-lg backdrop-blur-md w-full max-w-lg rounded-lg overflow-hidden max-h-[90vh] overflow-y-auto">
         {/* Header */}
@@ -84,14 +66,7 @@ function InfoModal({ service, closeModal }) {
           {formVisible && (
             <>
               <h5 className="text-lg font-medium text-white-700">Completa la siguiente información.</h5>
-
-              <button
-                type="button"
-                className="text-lg text-gray-400 hover:text-gray-600"
-                onClick={closeModal}
-              >
-                ✖
-              </button>
+              <button onClick={closeModal} type="button" className="text-lg text-gray-400 hover:text-gray-600" >✖</button>
             </>
           )}
         </div>
