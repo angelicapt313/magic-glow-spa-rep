@@ -1,31 +1,47 @@
-import React, { useState } from "react";
-import SideMenu from "../components/SideMenu";
+import React, { useEffect, useState } from 'react';
+import { getAppointments } from '../services/appointmentService';
 
-const Dashboard = () => {
-    const [selectedSection, setSelectedSection] = useState("home");
-  
-    const menuItems = [
-      { id: "home", label: "Home", icon: "🏠" },
-      { id: "appointments", label: "Citas", icon: "📅" },
-      { id: "clients", label: "Clientes", icon: "👤" },
-      { id: "reports", label: "Reportes", icon: "📊" },
-    ];
-  
-    return (
-      <div className="flex">
-        {/* Menú lateral */}
-        <SideMenu menuItems={menuItems} onSelect={setSelectedSection} />
-  
-        {/* Contenido del Dashboard */}
-        <div className="flex-1 p-6 bg-white transition-all duration-300">
-          {selectedSection === "home" && <p>🏠 Bienvenido al Dashboard</p>}
-          {selectedSection === "appointments" && <p>📅 Citas Agendadas</p>}
-          {selectedSection === "clients" && <p>👤 Clientes</p>}
-          {selectedSection === "reports" && <p>📊 Reportes</p>}
-        </div>
-      </div>
-    );
-  };
+function Dashboard() {
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAppointments() {
+      try {
+        // Petición al backend para obtener las citas
+        const data = await getAppointments(); 
+        setAppointments(data);
+      } catch (error) {
+        console.error("Error al obtener citas:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchAppointments();
+  }, []);
+
+  if (loading) return <p>Cargando citas...</p>;
+
+  return (
+    <div>
+      <h2>Citas registradas</h2>
+      {appointments.length === 0 ? (
+        <p>No hay citas registradas.</p>
+      ) : (
+        <ul>
+          {appointments.map((appt) => (
+            <li key={appt.rowKey}>
+              <strong>{appt.FullName}</strong> - {appt.Service} - {appt.Status}
+              <br />
+              Fecha: {new Date(appt.SelectedDate).toLocaleString()}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export default Dashboard;
 
