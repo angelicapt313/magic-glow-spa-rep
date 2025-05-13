@@ -53,7 +53,7 @@ function InfoModal({ service, closeModal }) {
     }, 3000);
 
     // Guarda en carrito para vista previa
-    addAppointment({ ...newAppointment, status: "Confirmado" });
+    addAppointment({ ...newAppointment });
   };
 
   if (!service) return null;
