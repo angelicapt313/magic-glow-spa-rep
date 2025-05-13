@@ -41,7 +41,7 @@ export async function getAppointments({ date, status } = {}) {
 }
 
 // Actualizar estado de una cita
-export async function updateStatus(id, status) {
+export async function updateAppointmentStatus (id, status) {
   try {
     const response = await fetch(`${BASE_URL}/appointments/${id}/status`, {
       method: "PUT",
