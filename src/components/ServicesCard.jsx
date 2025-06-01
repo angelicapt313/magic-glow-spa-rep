@@ -8,15 +8,15 @@ const ServicesCard = ({ service, openModal }) => {
                         transition-transform hover:bg-dark-purple hover:translate-y-[-5px] p-2 flex flex-col justify-between">
 
             <div className="flex flex-col items-center">
-                <img src={`../${service.image}`} className="w-[75%] rounded-lg" alt={service.name} />
+                <img src={`../${service.ImageUrl}`} className="w-[75%] rounded-lg" alt={service.Name} />
                 <p className="text-black font-bold text-lg">
-                    {service.name}
+                    {service.Name}
                 </p>
             </div>
 
             <div className="flex justify-end items-center gap-2">
                 <p className="text-gray-500 font-semibold text-sm">
-                    ${service.price}
+                    ${service.Price}
                 </p>
                 <button
                     onClick={openModal}
